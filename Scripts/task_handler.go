@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-func main()  {
+func main() {
 	fmt.Println("Starting up...")
 	file := "Static/Problems/1_0_Easy/1_1.md"
 
