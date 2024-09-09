@@ -1,0 +1,10 @@
+### Meta data <!--Please dont edit these fields-->
+Difficulty=Easy
+.
+.
+.
+Type=RA <!--Either RA (Relational Algebra) or TXT (text)-->
+
+### Task
+
+### Answer here:
