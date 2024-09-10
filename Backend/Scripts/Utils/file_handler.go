@@ -1,9 +1,16 @@
+/*
+Author: Keyvan Sadeghi
+
+Short: This file contains handlers for file manipulation
+*/
+
 package utils
 
 import (
 	"fmt"
 	"os"
 	"strings"
+
 )
 
 func Write_answer(query string, file_name string) error {
@@ -15,9 +22,15 @@ func Write_answer(query string, file_name string) error {
 	return nil
 }
 	
-func Get_answer(data string) string {
+func Get_answer(file_path string) string {
+	data_bytes, err := os.ReadFile(file_path)
+	data_str := string(data_bytes)
+	if err != nil {
+		panic(err)
+	}
+
 	answer_header := "### Answer here:"
-	header_index := strings.Index(data, answer_header)
+	header_index := strings.Index(data_str, answer_header)
 
 	// Get the index of header to procees extracting answer
 	if header_index == -1 {
@@ -27,7 +40,7 @@ func Get_answer(data string) string {
 
 	// Get the answer
 	start_index := header_index + len(answer_header)
-	content := data[start_index:]
+	content := data_str[start_index:]
 
 	return content
 }
@@ -38,7 +51,7 @@ This function will setup the needed items for path traversing
 Return:
 	- array containing number of files per difficulty
 */
-func Preprocessing_tasks(root_dir string) *[3]int {
+func preprocessing_tasks(root_dir string) *[3]int {
 	// array of zeros with len 3
 	var num_questions [3]int
 	paths := [3]string{"/1_0_Easy", "/2_0_Medium", "/3_0_Hard"}
@@ -56,13 +69,10 @@ func Preprocessing_tasks(root_dir string) *[3]int {
 	return &num_questions
 }
 
-/*
-This function will path traverse all sub directories in Static/Problems and extract all the answers
-a student has written.
-*/
-func Extract_from_files(root_dir string) {
-	
-	// num_tasks := preprocessing_tasks(root_dir)
-	// fmt.Println(num_tasks)
-
+func get_num_files(folder_abs_path string) int {
+	files, _ := os.ReadDir(folder_abs_path)
+	length := len(files)
+	return length
 }
+
+
