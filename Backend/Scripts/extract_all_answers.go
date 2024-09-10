@@ -19,24 +19,28 @@ func main() {
 		fmt.Println(os.Args)
 		utils.Usage()
 	}
-
-	problems_path, sql_path := os.Args[1], os.Args[2]
-	fmt.Println(problems_path)
-	fmt.Println(sql_path)
 	fmt.Println("Starting up...")
 
-	// list of all queries from all files
+	problems_path, sql_path := os.Args[1], os.Args[2]
+
+	
 	fmt.Println("Extracting answers...")
-	list := extract_from_files(problems_path)
+	list := extract_from_files(problems_path) // list of all queries from all files
 	if list == nil {
 		fmt.Printf("List is nil!!!!\n")
 	}
 
-	// write all answers to sql file
 	fmt.Println("Writing answers to sql file...")
+	
+	file, err := os.OpenFile(sql_path, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	if err != nil {
+		fmt.Printf("Error writing to file: %s\n", err)
+		return
+	}
 
-	for _, query := range list {
-		utils.Write_answer(query, sql_path)
+	for _, query := range list { // write all answers to sql file
+		utils.Write_answer(*file, query)
+		
 	}
 
 }

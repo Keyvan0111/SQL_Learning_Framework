@@ -13,10 +13,8 @@ import (
 
 )
 
-func Write_answer(query string, file_name string) error {
-	data := []byte(query)
-
-	err := os.WriteFile(file_name, data, 0777)
+func Write_answer(file os.File, query string) error {
+	_, err := file.WriteString(query)
 
 	if err != nil { return err }
 	return nil
