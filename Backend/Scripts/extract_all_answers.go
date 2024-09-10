@@ -20,16 +20,12 @@ func main() {
 	
 }
 
-
 func add_answer(file string) error {
 	content, err := os.ReadFile(file)
 	if err != nil { return err }
 	
 	// Get answer from whole markdown content
 	answer := utils.Get_answer(string(content))
-	
-	fmt.Println(string(content))
-	fmt.Printf("Answer:%s, Length: %d", answer, len(answer))
 	
 	// Write files to my_queries.sql
 	my_queries_file := "SQL_Setup/my_queries.sql"

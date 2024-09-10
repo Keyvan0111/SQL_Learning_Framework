@@ -30,3 +30,11 @@ func Get_answer(data string) string {
 
 	return content
 }
+
+/*
+This function will path traverse all sub directories in Static/Problems and extract all the answers
+a student has written.
+*/
+func Extract_from_files(root_dir string) {
+
+}
