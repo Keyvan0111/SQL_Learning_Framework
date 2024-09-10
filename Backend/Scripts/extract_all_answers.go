@@ -16,7 +16,11 @@ import (
 func main() {
 	fmt.Println("Starting up...")
 
-	add_all_answers()
+	root := "Static/Problems"
+	array := utils.Preprocessing_tasks(root)
+	fmt.Println(array)
+
+	// add_all_answers()
 	
 }
 
