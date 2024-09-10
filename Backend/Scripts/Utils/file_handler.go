@@ -21,7 +21,7 @@ func Write_answer(query string, file_name string) error {
 	if err != nil { return err }
 	return nil
 }
-	
+
 func Get_answer(file_path string) string {
 	data_bytes, err := os.ReadFile(file_path)
 	data_str := string(data_bytes)
